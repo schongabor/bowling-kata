@@ -1,7 +1,9 @@
 import { Roll } from '../roll';
 
+export type FrameScore = number[];
+
 export class Frame {
-  private pins: number[] = [];
+  private frameScore: FrameScore = [];
   private roll: Roll;
 
   constructor(roll: Roll) {
@@ -14,40 +16,42 @@ export class Frame {
     let extraRoll: number;
     let remainingNumberOfPins: number;
 
+    this.frameScore = [];
+
     remainingNumberOfPins = 10;
     firstRoll = this.roll.pins(remainingNumberOfPins);
-    this.pins.push(firstRoll);
+    this.frameScore.push(firstRoll);
 
     if (firstRoll < 10) {
       remainingNumberOfPins = 10 - firstRoll;
       secondRoll = this.roll.pins(remainingNumberOfPins);
-      this.pins.push(secondRoll);
+      this.frameScore.push(secondRoll);
     }
 
     if (frame === 10) {
       if (firstRoll === 10) {
         remainingNumberOfPins = 10;
         secondRoll = this.roll.pins(remainingNumberOfPins);
-        this.pins.push(secondRoll);
+        this.frameScore.push(secondRoll);
 
         if (secondRoll === 10) {
           remainingNumberOfPins = 10;
           extraRoll = this.roll.pins(remainingNumberOfPins);
-          this.pins.push(extraRoll);
+          this.frameScore.push(extraRoll);
         } else {
           remainingNumberOfPins = 10 - secondRoll;
           extraRoll = this.roll.pins(remainingNumberOfPins);
-          this.pins.push(extraRoll);
+          this.frameScore.push(extraRoll);
         }
       }
 
-      if ((this.pins.reduce((sum, number) => sum + number)) === 10) {
+      if ((this.frameScore.reduce((sum, number) => sum + number)) === 10) {
         remainingNumberOfPins = 10;
         extraRoll = this.roll.pins(remainingNumberOfPins);
-        this.pins.push(extraRoll);
+        this.frameScore.push(extraRoll);
       }
     }
 
-    return this.pins;
+    return this.frameScore;
   }
 }

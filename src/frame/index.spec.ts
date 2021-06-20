@@ -1,4 +1,4 @@
-import { Frame } from './index';
+import { Frame, FrameScore } from './index';
 import { Roll } from '../roll';
 
 describe('Frame', () => {
@@ -45,5 +45,13 @@ describe('Frame', () => {
     const result = frame.playFrame(frameNumber);
 
     expect(result.length).toEqual(3);
+  });
+
+  it('resets frameScore array if playFrame is called multiple times', () => {
+    let results: FrameScore[] = [];
+    for (let i = 0; i < 10; i++) {
+      results.push(frame.playFrame(i));
+      expect(results[i].length).toBeLessThan(4);
+    }
   });
 });

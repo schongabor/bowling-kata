@@ -37,7 +37,7 @@ describe('Frame', () => {
     expect(frameScore).toBeLessThan(11);
   });
 
-  it('returns an array with 3 numbers in the 10th frame if the player rolls a spear or a strike', () => {
+  it('returns an array with 3 numbers in the 10th frame if the player rolls a spare or a strike', () => {
     frameNumber = 10;
     mockRoll = 10;
     jest.spyOn(roll, 'pins').mockReturnValue(mockRoll)

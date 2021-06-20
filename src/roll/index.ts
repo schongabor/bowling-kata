@@ -3,7 +3,7 @@ export class Roll{
     return new Roll();
   }
 
-  public pins(maxNumber: number){
-    return Math.floor(Math.random() * (1 + maxNumber - 0) + 0);
+  public pins(remainingNumberOfPins: number): number{
+    return Math.floor(Math.random() * (1 + remainingNumberOfPins - 0) + 0);
   }
 }
